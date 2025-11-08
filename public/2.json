@@ -1,0 +1,106 @@
+{
+  "grading_report": [
+    {
+      "question_number": "2 (1)",
+      "question_type": "objective",
+      "question_text": "下列加点字注音不正确的一项是（ ）A.濯（zhuó）清涟而不妖 B.陶后鲜（xiān）有闻 C.偕（xié）数友 D.兴（xìng）正浓",
+      "student_answer": "B",
+      "is_correct": true,
+      "actual_is_correct": "正确",
+      "actual_question_type": "主观",
+      "analysis": "回答正确。本题考察多音字的辨析。“鲜”在表示“少”、“罕见”时读作“xiǎn”，如“鲜有”；在表示“新鲜”、“鲜美”时读作“xiān”。题中“陶后鲜有闻”意为“陶渊明之后很少有人谈论”，因此应读“xiǎn”，选项B注音为“xiān”是错误的。",
+      "analysis_acceptability": "合格",
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-1duBmC-BS-EI-16.png"
+    },
+    {
+      "question_number": "一、1",
+      "question_type": "objective",
+      "question_text": "（1）下列对这首诗的理解和赏析，不恰当的一项是（ ）A．首联中“倚”字运用比喻的修辞手法，表现出春天的活力与生机。B．颔联中“不平”表现出溪水的起伏变化，“见还”刻画出溪水的舒卷伸缩。C．本诗写景层次分明，画面色彩丰富，表达了诗人对山水美景的喜爱之情。D．本诗语言生动活泼，展现了筠溪的动态美，富有趣味，读来如闻如见，引人入胜。",
+      "student_answer": "B",
+      "is_correct": false,
+      "analysis": "回答错误。本题要求选出'不恰当'的一项，正确答案应为A。A选项将“倚”字判断为比喻修辞是错误的，此处将小溪人格化，赋予其依靠春涨的动作，应为拟人手法。而B选项对“不平”和“见还”的理解是恰当的，准确描述了溪水的动态变化。请注意审题，理解题目要求是解题的关键。",
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-1duBmC-BT-EJ-16.png"
+    },
+    {
+      "question_number": "一、2",
+      "question_type": "subjective",
+      "question_text": "（2）下面有甲、乙两幅图片，请你为本诗的颈联选择合适的配图并说明理由。",
+      "student_answer": "我选乙因为本诗中'银梭时拨刺，破碎波中山'的意思是银色的鱼像梭一样跃出水面使水面振动。",
+      "is_correct": true,
+      "analysis": "回答正确。学生准确选择了与诗句意境相符的图片“乙”，并能正确解读关键诗句“银梭时拨刺”来支撑自己的观点，说明对诗歌的理解比较到位。书写工整，思路清晰。若能结合诗句的后半部分“破碎波中山”以及与甲图的对比来展开论述，答案会更加严谨和全面。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "我选乙",
+          "is_correct": true,
+          "feedback": "选择正确。乙图描绘的鱼儿跃出水面、水波荡漾的景象，确实比甲图中鱼群游弋的静态画面更符合颈联的诗意。"
+        },
+        {
+          "step_id": 2,
+          "step_text": "理由：因为本诗中'银梭时拨刺，破碎波中山'的意思是银色的鱼像梭一样跃出水面使水面振动。",
+          "is_correct": true,
+          "feedback": "理由阐述正确。你准确地抓住了'银梭'比喻鱼、'拨刺'形容鱼儿跃出水面声音和动作的核心意象，这是解题的关键。分析很到位！为使论证更充分，可以补充说明乙图如何体现'破碎波中山'的意境。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-1duBmC-BT-EJ-16.png"
+    },
+    {
+      "question_number": "1 (1)",
+      "question_type": "subjective",
+      "question_text": "“病树前头万木春”描绘了一幅怎样的画面?",
+      "student_answer": "病树前面的树木相争春。",
+      "is_correct": false,
+      "analysis": "同学的回答抓住了一部分意象，但不够完整。这句诗描绘的不仅是万木争春的勃勃生机，更关键的是它与“病树”形成的鲜明对比。这幅画面蕴含着新事物必将取代旧事物的哲理，也表现了诗人虽身处逆境却依然乐观豁达的胸襟。后续作答可以尝试更深入地挖掘诗句的对比关系和象征意义。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "学生描述了“万木争春”的景象。",
+          "is_correct": true,
+          "feedback": "能够准确识别出“万木春”所代表的生机勃勃的景象，用“相争春”来形容，非常生动，这一点做得很好。"
+        },
+        {
+          "step_id": 2,
+          "step_text": "未能点出“病树”与“万木”的对比关系及其中蕴含的哲理。",
+          "is_correct": false,
+          "feedback": "这句诗的精髓在于对比。将衰败的“病树”（象征诗人自己和旧事物）与生机盎然的“万木春”（象征新生力量）并置，才得以突显其深刻的哲理和诗人豁达的情怀。这是本题回答的关键点，如果能补充上就更完美了。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-1duBmC-BU-EK-16.png"
+    },
+    {
+      "question_number": "2.(1)",
+      "question_type": "objective",
+      "question_text": "下列对诗歌的理解和分析, 不恰当的一项是( )\nA.“明月几时有? 把酒问青天”以问开篇, 引出作者对宇宙奥秘的探寻及对明月的赞美与向往。\nB.上阕的末尾表明了作者内心的情感由之前的对天上宫阙的赞美与向往转而对人间生活的热爱。\nC.“但愿人长久, 千里共婵娟”蕴含了词人虽与兄弟相隔千里, 但依然为朝廷效力的深邃哲理。",
+      "student_answer": "D",
+      "is_correct": false,
+      "analysis": "回答错误。本题要求选出‘不恰当’的一项。试卷中只给出了A、B、C三个选项，其中C项的表述是错误的，因为它将对亲人的思念和祝福曲解为“为朝廷效力”。因此正确答案应为C。请同学注意仔细审题，并完整阅读所有选项后再作答。",
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-1duBmC-BW-EM-16.png"
+    },
+    {
+      "question_number": "二、(2)",
+      "question_type": "subjective",
+      "question_text": "古典诗词研究泰斗叶嘉莹先生曾说“苏轼的意象创造，本质是精神境界的外化”，请选取“酒”“婵娟”两个意象描绘画面，并探索词人的精神世界。",
+      "student_answer": "“酒”字流露出作者对宇宙人生的疑惑，也显露出作者对明日的赞美和向往。“婵娟”把人的思念化作了真诚的祝福，表现作者的乐观与豁达。",
+      "is_correct": true,
+      "analysis": "回答非常出色。学生准确地把握了“酒”和“婵娟”在苏轼词中的核心意蕴。对“酒”的分析点出了作者的哲思与疑惑，对“婵娟”的分析则深刻理解了其从思念升华为祝福的豁达精神。整个答案逻辑清晰，语言简洁，对词人精神世界的探索很到位。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "“酒”字流露出作者对宇宙人生的疑惑，也显露出作者对明日的赞美和向往。",
+          "is_correct": true,
+          "feedback": "对“酒”的解读很准确。指出其背后蕴含的对宇宙人生的“疑惑”，抓住了“把酒问青天”的精髓，体现了苏轼的哲人气质。分析非常到位。"
+        },
+        {
+          "step_id": 2,
+          "step_text": "“婵娟”把人的思念化作了真诚的祝福，表现作者的乐观与豁达。",
+          "is_correct": true,
+          "feedback": "对“婵娟”的理解非常深刻。准确地从“但愿人长久，千里共婵娟”中提炼出将个人思念升华为普世祝福的豁达胸襟，并点明了作者乐观旷达的精神境界，非常棒！"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-1duBmC-BX-EN-16.png",
+      "actual_is_correct": "错误",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "合格"
+    }
+  ]
+}

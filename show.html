@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作业批改评估对照</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            gap: 16px;
+            padding: 16px;
+        }
+
+        /* 左侧图片展示区 */
+        .left-panel {
+            width: 24%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-image-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .zoom-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .main-image-container:hover .zoom-controls {
+            opacity: 1;
+        }
+
+        .zoom-btn {
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .zoom-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .main-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+            user-select: none;
+        }
+
+        .main-image.zoomed {
+            cursor: grab;
+            transform-origin: center;
+        }
+
+        .main-image.dragging {
+            cursor: grabbing;
+        }
+
+        .thumbnails-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 8px 0;
+        }
+
+        .thumbnail {
+            min-width: 80px;
+            height: 60px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            object-fit: cover;
+        }
+
+        .thumbnail:hover {
+            border-color: #007bff;
+            transform: scale(1.05);
+        }
+
+        .thumbnail.active {
+            border-color: #007bff;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        /* 中间图片展示区 */
+        .middle-panel {
+            width: 31%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .question-image-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .question-image-container:hover .zoom-controls {
+            opacity: 1;
+        }
+
+        .question-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+            user-select: none;
+        }
+
+        .question-image.zoomed {
+            cursor: grab;
+            transform-origin: center;
+        }
+
+        .question-image.dragging {
+            cursor: grabbing;
+        }
+
+        .no-image-placeholder {
+            color: #6c757d;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        /* 右侧面板 */
+        .right-panel {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* JSON输入框 */
+        .json-input-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+        }
+
+        .json-input {
+            width: 100%;
+            height: 120px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .json-input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .load-button {
+            margin-top: 8px;
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .load-button:hover {
+            background: #0056b3;
+        }
+
+        /* 隐藏右侧的加载数据控件，改用左侧底部 */
+        .right-panel .json-input-container {
+            display: none;
+        }
+
+        /* 紧凑输入框高度覆盖 */
+        .json-input {
+            height: 80px;
+        }
+
+        /* 题目类型统计区域 */
+        .stats-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            padding: 10px 12px;
+            margin-bottom: 12px;
+        }
+
+        .stats-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .stats-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #6c757d;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        /* 卡片列表区域（网格排版） */
+        .cards-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 8px;
+            align-content: start;
+            max-height: 40vh;
+            overflow-y: auto;
+            flex: none;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e9ecef;
+            position: relative;
+            height: 130px;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card.correct {
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2);
+        }
+
+        .card.incorrect {
+            border-left: 4px solid #dc3545;
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);
+        }
+
+        /* 选中高亮 */
+        .card.selected {
+            background: #f0f7ff;
+            border-color: #007bff;
+            box-shadow: 0 6px 18px rgba(0, 123, 255, 0.18);
+            transform: translateY(-1px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .question-number {
+            font-weight: bold;
+            font-size: 16px;
+            color: #495057;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status-correct {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-incorrect {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .card-content {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .question-type {
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 6px;
+            padding: 2px 6px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 12px;
+        }
+
+        .student-answer {
+            font-weight: bold;
+            color: #495057;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            word-break: break-word;
+        }
+
+        .expand-icon {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            color: #007bff;
+            font-size: 12px;
+        }
+
+        /* 详情区域 */
+        .detail-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .detail-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            color: #495057;
+        }
+
+        .detail-section {
+            margin-bottom: 16px;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 4px;
+        }
+
+        .detail-content {
+            color: #6c757d;
+            line-height: 1.5;
+        }
+
+        .steps-container {
+            margin-top: 12px;
+        }
+
+        .step-item {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid #007bff;
+        }
+
+        .step-correct {
+            border-left-color: #28a745;
+            background: #f8fff9;
+        }
+
+        .step-incorrect {
+            border-left-color: #dc3545;
+            background: #fff8f8;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧图片展示区 -->
+        <div class="left-panel">
+            <div class="main-image-container">
+                <img id="mainImage" class="main-image" src="" alt="原始图片" style="display: none;">
+                <div id="noMainImage" class="no-image-placeholder">请选择图片</div>
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="zoomInMain" title="放大">+</button>
+                    <button class="zoom-btn" id="zoomOutMain" title="缩小">-</button>
+                    <button class="zoom-btn" id="resetZoomMain" title="重置">⌂</button>
+                </div>
+            </div>
+            <div class="thumbnails-container" id="thumbnailsContainer">
+                <!-- 缩略图将通过JavaScript动态生成 -->
+            </div>
+            <!-- 加载数据（左下） -->
+            <div class="json-input-container">
+                <textarea id="jsonInput" class="json-input" placeholder="在此输入JSON数据..."></textarea>
+                <button id="loadButton" class="load-button">加载数据</button>
+            </div>
+        </div>
+
+        <!-- 中间图片展示区 -->
+        <div class="middle-panel">
+            <div class="question-image-container">
+                <img id="questionImage" class="question-image" src="" alt="题目图片" style="display: none;">
+                <div id="noQuestionImage" class="no-image-placeholder">点击右侧卡片查看题目图片</div>
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="zoomInQuestion" title="放大">+</button>
+                    <button class="zoom-btn" id="zoomOutQuestion" title="缩小">-</button>
+                    <button class="zoom-btn" id="resetZoomQuestion" title="重置">⌂</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧面板 -->
+        <div class="right-panel">
+            <!-- JSON输入框 -->
+            <div class="json-input-container">
+                <textarea id="jsonInput" class="json-input" placeholder="在此输入JSON数据..."></textarea>
+                <button id="loadButton" class="load-button">加载数据</button>
+            </div>
+
+            <!-- 题目类型统计 -->
+            <div class="stats-container" id="statsContainer">
+                <div class="stats-title">题目类型统计</div>
+                <div class="stats-content">
+                    <div class="stat-item">
+                        <span class="stat-label">客观题:</span>
+                        <span class="stat-value" id="objectiveCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">主观题:</span>
+                        <span class="stat-value" id="subjectiveCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">总计:</span>
+                        <span class="stat-value" id="totalCount">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片列表 -->
+            <div class="cards-container" id="cardsContainer">
+                <!-- 卡片将通过JavaScript动态生成 -->
+            </div>
+
+            <!-- 详情区域 -->
+            <div id="detailContainer" class="detail-container hidden">
+                <div class="detail-title" id="detailTitle">题目详情</div>
+                <div id="detailContent">
+                    <!-- 详情内容将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentData = null;
+        let selectedCardIndex = -1;
+
+        // 页面加载时自动加载1.json数据
+        window.addEventListener('DOMContentLoaded', function() {
+            loadDefaultData();
+        });
+
+        // 加载默认数据
+        async function loadDefaultData() {
+            try {
+                const response = await fetch('./1.json');
+                const data = await response.json();
+                loadData(data);
+            } catch (error) {
+                console.error('加载默认数据失败:', error);
+            }
+        }
+
+        // 加载数据
+        function loadData(data) {
+            currentData = data;
+            renderOriginImages(data.origin_images);
+            renderGradingCards(data.grading_report);
+            hideDetail();
+        }
+
+        // 渲染原始图片
+        function renderOriginImages(images) {
+            const thumbnailsContainer = document.getElementById('thumbnailsContainer');
+            const mainImage = document.getElementById('mainImage');
+            const noMainImage = document.getElementById('noMainImage');
+
+            thumbnailsContainer.innerHTML = '';
+
+            if (images && images.length > 0) {
+                // 显示第一张图片作为主图
+                mainImage.src = images[0];
+                mainImage.style.display = 'block';
+                noMainImage.style.display = 'none';
+
+                // 生成缩略图
+                images.forEach((imageUrl, index) => {
+                    const thumbnail = document.createElement('img');
+                    thumbnail.src = imageUrl;
+                    thumbnail.className = 'thumbnail';
+                    if (index === 0) thumbnail.classList.add('active');
+                    
+                    thumbnail.addEventListener('click', () => {
+                        // 更新主图
+                        mainImage.src = imageUrl;
+                        
+                        // 更新缩略图状态
+                        document.querySelectorAll('.thumbnail').forEach(thumb => {
+                            thumb.classList.remove('active');
+                        });
+                        thumbnail.classList.add('active');
+                    });
+
+                    thumbnailsContainer.appendChild(thumbnail);
+                });
+            } else {
+                mainImage.style.display = 'none';
+                noMainImage.style.display = 'block';
+            }
+        }
+
+        // 渲染批改卡片
+        function renderGradingCards(gradingReport) {
+            const cardsContainer = document.getElementById('cardsContainer');
+            cardsContainer.innerHTML = '';
+
+            // 统计题目类型
+            let objectiveCount = 0;
+            let subjectiveCount = 0;
+
+            if (gradingReport && gradingReport.length > 0) {
+                gradingReport.forEach((item, index) => {
+                    // 统计题目类型
+                    if (item.question_type === 'objective') {
+                        objectiveCount++;
+                    } else if (item.question_type === 'subjective') {
+                        subjectiveCount++;
+                    }
+
+                    const card = document.createElement('div');
+                    card.className = `card ${item.is_correct ? 'correct' : 'incorrect'}`;
+                    
+                    // 确定题目类型显示文本
+                    const questionTypeText = item.question_type === 'objective' ? '客观题' : 
+                                           item.question_type === 'subjective' ? '主观题' : '未知类型';
+                    
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <div class="question-number">${item.question_number}</div>
+                            <div class="status-badge ${item.is_correct ? 'status-correct' : 'status-incorrect'}">
+                                ${item.is_correct ? '正确' : '错误'}
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="question-type">题目类型: ${questionTypeText}</div>
+                            <div class="student-answer">学生答案: ${item.student_answer}</div>
+                        </div>
+                    `;
+
+                    card.addEventListener('click', () => {
+                        selectCard(index);
+                    });
+
+                    cardsContainer.appendChild(card);
+                });
+            }
+
+            // 更新统计数据
+            updateStats(objectiveCount, subjectiveCount);
+        }
+
+        // 更新统计数据
+        function updateStats(objectiveCount, subjectiveCount) {
+            document.getElementById('objectiveCount').textContent = objectiveCount;
+            document.getElementById('subjectiveCount').textContent = subjectiveCount;
+            document.getElementById('totalCount').textContent = objectiveCount + subjectiveCount;
+        }
+
+        // 选择卡片
+        function selectCard(index) {
+            selectedCardIndex = index;
+            const item = currentData.grading_report[index];
+            
+            // 更新卡片选中状态
+            document.querySelectorAll('.card').forEach((card, i) => {
+                card.classList.toggle('selected', i === index);
+            });
+
+            // 显示题目图片
+            showQuestionImage(item.image);
+            
+            // 显示详情
+            showDetail(item);
+        }
+
+        // 显示题目图片
+        function showQuestionImage(imageUrl) {
+            const questionImage = document.getElementById('questionImage');
+            const noQuestionImage = document.getElementById('noQuestionImage');
+
+            if (imageUrl) {
+                questionImage.src = imageUrl;
+                questionImage.style.display = 'block';
+                noQuestionImage.style.display = 'none';
+            } else {
+                questionImage.style.display = 'none';
+                noQuestionImage.style.display = 'block';
+                noQuestionImage.textContent = '该题目无图片';
+            }
+        }
+
+        // 显示详情
+        function showDetail(item) {
+            const detailContainer = document.getElementById('detailContainer');
+            const detailTitle = document.getElementById('detailTitle');
+            const detailContent = document.getElementById('detailContent');
+
+            detailTitle.textContent = `${item.question_number} 详情`;
+            
+            let stepsHtml = '';
+            if (item.steps && item.steps.length > 0) {
+                stepsHtml = `
+                    <div class="detail-section">
+                        <div class="detail-label">解题步骤:</div>
+                        <div class="steps-container">
+                            ${item.steps.map(step => `
+                                <div class="step-item ${step.is_correct ? 'step-correct' : 'step-incorrect'}">
+                                    <div style="font-weight: bold; margin-bottom: 4px;">步骤 ${step.step_id}</div>
+                                    <div style="margin-bottom: 8px;">${step.step_text}</div>
+                                    <div style="font-size: 12px; color: #6c757d;">${step.feedback}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            detailContent.innerHTML = `
+                <div class="detail-section">
+                    <div class="detail-label">题目类型:</div>
+                    <div class="detail-content">${item.question_type === 'objective' ? '客观题' : '主观题'}</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">题目内容:</div>
+                    <div class="detail-content">${item.question_text}</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">学生答案:</div>
+                    <div class="detail-content">${item.student_answer}</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">批改结果:</div>
+                    <div class="detail-content ${item.is_correct ? 'text-success' : 'text-danger'}">
+                        ${item.is_correct ? '正确' : '错误'}
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">详细分析:</div>
+                    <div class="detail-content">${item.analysis}</div>
+                </div>
+                ${stepsHtml}
+            `;
+
+            detailContainer.classList.remove('hidden');
+        }
+
+        // 隐藏详情
+        function hideDetail() {
+            const detailContainer = document.getElementById('detailContainer');
+            detailContainer.classList.add('hidden');
+            
+            // 清除题目图片
+            const questionImage = document.getElementById('questionImage');
+            const noQuestionImage = document.getElementById('noQuestionImage');
+            questionImage.style.display = 'none';
+            noQuestionImage.style.display = 'block';
+            noQuestionImage.textContent = '点击右侧卡片查看题目图片';
+            
+            // 清除卡片选中状态
+            document.querySelectorAll('.card').forEach(card => {
+                card.classList.remove('selected');
+            });
+        }
+
+        // JSON输入框功能
+        document.getElementById('loadButton').addEventListener('click', function() {
+            const jsonInput = document.getElementById('jsonInput');
+            const jsonText = jsonInput.value.trim();
+            
+            if (!jsonText) {
+                alert('请输入JSON数据');
+                return;
+            }
+            
+            try {
+                const data = JSON.parse(jsonText);
+                loadData(data);
+                //alert('数据加载成功！');
+            } catch (error) {
+                //alert('JSON格式错误，请检查输入的数据');
+                console.error('JSON解析错误:', error);
+            }
+        });
+
+        // 支持拖拽JSON文件
+        const jsonInput = document.getElementById('jsonInput');
+        
+        jsonInput.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#007bff';
+        });
+        
+        jsonInput.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#e9ecef';
+        });
+        
+        jsonInput.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#e9ecef';
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                const file = files[0];
+                if (file.type === 'application/json' || file.name.endsWith('.json')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        jsonInput.value = e.target.result;
+                    };
+                    reader.readAsText(file);
+                } else {
+                    alert('请拖拽JSON文件');
+                }
+            }
+        });
+
+        // 图片缩放和拖拽功能
+        let mainImageZoom = 1;
+        let questionImageZoom = 1;
+        let mainImageTranslateX = 0;
+        let mainImageTranslateY = 0;
+        let questionImageTranslateX = 0;
+        let questionImageTranslateY = 0;
+        const zoomStep = 0.2;
+        const minZoom = 0.5;
+        const maxZoom = 3;
+
+        // 拖拽状态
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartY = 0;
+        let dragStartTranslateX = 0;
+        let dragStartTranslateY = 0;
+        let currentDragImage = null;
+
+        // 缩放和平移函数
+        function transformImage(imageElement, zoomLevel, translateX, translateY) {
+            imageElement.style.transform = `scale(${zoomLevel}) translate(${translateX}px, ${translateY}px)`;
+            if (zoomLevel !== 1) {
+                imageElement.classList.add('zoomed');
+            } else {
+                imageElement.classList.remove('zoomed');
+                // 当缩放为1时，重置平移
+                if (imageElement.id === 'mainImage') {
+                    mainImageTranslateX = 0;
+                    mainImageTranslateY = 0;
+                } else if (imageElement.id === 'questionImage') {
+                    questionImageTranslateX = 0;
+                    questionImageTranslateY = 0;
+                }
+                imageElement.style.transform = `scale(1) translate(0px, 0px)`;
+            }
+        }
+
+        // 主图片缩放控制
+        document.getElementById('zoomInMain').addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (mainImageZoom < maxZoom) {
+                mainImageZoom += zoomStep;
+                transformImage(document.getElementById('mainImage'), mainImageZoom, mainImageTranslateX, mainImageTranslateY);
+            }
+        });
+
+        document.getElementById('zoomOutMain').addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (mainImageZoom > minZoom) {
+                mainImageZoom -= zoomStep;
+                transformImage(document.getElementById('mainImage'), mainImageZoom, mainImageTranslateX, mainImageTranslateY);
+            }
+        });
+
+        document.getElementById('resetZoomMain').addEventListener('click', function(e) {
+            e.stopPropagation();
+            mainImageZoom = 1;
+            mainImageTranslateX = 0;
+            mainImageTranslateY = 0;
+            transformImage(document.getElementById('mainImage'), mainImageZoom, mainImageTranslateX, mainImageTranslateY);
+        });
+
+        // 题目图片缩放控制
+        document.getElementById('zoomInQuestion').addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (questionImageZoom < maxZoom) {
+                questionImageZoom += zoomStep;
+                transformImage(document.getElementById('questionImage'), questionImageZoom, questionImageTranslateX, questionImageTranslateY);
+            }
+        });
+
+        document.getElementById('zoomOutQuestion').addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (questionImageZoom > minZoom) {
+                questionImageZoom -= zoomStep;
+                transformImage(document.getElementById('questionImage'), questionImageZoom, questionImageTranslateX, questionImageTranslateY);
+            }
+        });
+
+        document.getElementById('resetZoomQuestion').addEventListener('click', function(e) {
+            e.stopPropagation();
+            questionImageZoom = 1;
+            questionImageTranslateX = 0;
+            questionImageTranslateY = 0;
+            transformImage(document.getElementById('questionImage'), questionImageZoom, questionImageTranslateX, questionImageTranslateY);
+        });
+
+        // 鼠标滚轮缩放
+        document.getElementById('mainImage').addEventListener('wheel', function(e) {
+            e.preventDefault();
+            if (e.deltaY < 0 && mainImageZoom < maxZoom) {
+                // 向上滚动，放大
+                mainImageZoom += zoomStep;
+            } else if (e.deltaY > 0 && mainImageZoom > minZoom) {
+                // 向下滚动，缩小
+                mainImageZoom -= zoomStep;
+            }
+            transformImage(this, mainImageZoom, mainImageTranslateX, mainImageTranslateY);
+        });
+
+        document.getElementById('questionImage').addEventListener('wheel', function(e) {
+            e.preventDefault();
+            if (e.deltaY < 0 && questionImageZoom < maxZoom) {
+                // 向上滚动，放大
+                questionImageZoom += zoomStep;
+            } else if (e.deltaY > 0 && questionImageZoom > minZoom) {
+                // 向下滚动，缩小
+                questionImageZoom -= zoomStep;
+            }
+            transformImage(this, questionImageZoom, questionImageTranslateX, questionImageTranslateY);
+        });
+
+        // 双击重置缩放
+        document.getElementById('mainImage').addEventListener('dblclick', function() {
+            mainImageZoom = 1;
+            mainImageTranslateX = 0;
+            mainImageTranslateY = 0;
+            transformImage(this, mainImageZoom, mainImageTranslateX, mainImageTranslateY);
+        });
+
+        document.getElementById('questionImage').addEventListener('dblclick', function() {
+            questionImageZoom = 1;
+            questionImageTranslateX = 0;
+            questionImageTranslateY = 0;
+            transformImage(this, questionImageZoom, questionImageTranslateX, questionImageTranslateY);
+        });
+
+        // 拖拽事件监听器
+        function addDragListeners(imageElement) {
+            imageElement.addEventListener('mousedown', function(e) {
+                // 只有在缩放状态下才允许拖拽
+                const isMainImage = imageElement.id === 'mainImage';
+                const currentZoom = isMainImage ? mainImageZoom : questionImageZoom;
+                
+                if (currentZoom > 1) {
+                    e.preventDefault();
+                    isDragging = true;
+                    currentDragImage = imageElement;
+                    
+                    dragStartX = e.clientX;
+                    dragStartY = e.clientY;
+                    dragStartTranslateX = isMainImage ? mainImageTranslateX : questionImageTranslateX;
+                    dragStartTranslateY = isMainImage ? mainImageTranslateY : questionImageTranslateY;
+                    
+                    imageElement.classList.add('dragging');
+                }
+            });
+        }
+
+        // 全局鼠标移动和释放事件
+        document.addEventListener('mousemove', function(e) {
+            if (isDragging && currentDragImage) {
+                e.preventDefault();
+                
+                const deltaX = e.clientX - dragStartX;
+                const deltaY = e.clientY - dragStartY;
+                
+                const isMainImage = currentDragImage.id === 'mainImage';
+                const currentZoom = isMainImage ? mainImageZoom : questionImageZoom;
+                
+                // 计算新的平移位置（考虑缩放比例）
+                const newTranslateX = dragStartTranslateX + deltaX / currentZoom;
+                const newTranslateY = dragStartTranslateY + deltaY / currentZoom;
+                
+                if (isMainImage) {
+                    mainImageTranslateX = newTranslateX;
+                    mainImageTranslateY = newTranslateY;
+                    transformImage(currentDragImage, mainImageZoom, mainImageTranslateX, mainImageTranslateY);
+                } else {
+                    questionImageTranslateX = newTranslateX;
+                    questionImageTranslateY = newTranslateY;
+                    transformImage(currentDragImage, questionImageZoom, questionImageTranslateX, questionImageTranslateY);
+                }
+            }
+        });
+
+        document.addEventListener('mouseup', function(e) {
+            if (isDragging) {
+                isDragging = false;
+                if (currentDragImage) {
+                    currentDragImage.classList.remove('dragging');
+                    currentDragImage = null;
+                }
+            }
+        });
+
+        // 为图片添加拖拽监听器
+        addDragListeners(document.getElementById('mainImage'));
+        addDragListeners(document.getElementById('questionImage'));
+
+        // 当切换图片时重置缩放和平移
+        const originalRenderOriginImages = renderOriginImages;
+        renderOriginImages = function(images) {
+            mainImageZoom = 1;
+            mainImageTranslateX = 0;
+            mainImageTranslateY = 0;
+            originalRenderOriginImages(images);
+        };
+
+        const originalShowQuestionImage = showQuestionImage;
+        showQuestionImage = function(imageUrl) {
+            questionImageZoom = 1;
+            questionImageTranslateX = 0;
+            questionImageTranslateY = 0;
+            originalShowQuestionImage(imageUrl);
+        };
+    </script>
+</body>
+</html>

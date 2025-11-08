@@ -1,0 +1,75 @@
+{
+  "grading_report": [
+    {
+      "question_number": "第1题",
+      "question_type": "objective",
+      "is_correct": true,
+      "student_answer": "A",
+      "correct_answer": "A",
+      "explanation": "这是一个选择题，学生选择了正确答案A。",
+      "question_image": "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=math%20problem%20multiple%20choice%20question%20with%20options%20A%20B%20C%20D&image_size=square"
+    },
+    {
+      "question_number": "第2题",
+      "question_type": "subjective",
+      "is_correct": false,
+      "student_answer": "x = 2",
+      "correct_answer": "x = 3",
+      "explanation": "学生在解方程时出现了计算错误。",
+      "question_image": "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=algebra%20equation%20solve%20for%20x%20math%20problem&image_size=square",
+      "steps": [
+        {
+          "step": "2x + 1 = 7",
+          "is_correct": true,
+          "explanation": "原始方程正确"
+        },
+        {
+          "step": "2x = 6",
+          "is_correct": true,
+          "explanation": "移项正确"
+        },
+        {
+          "step": "x = 2",
+          "is_correct": false,
+          "explanation": "除法计算错误，应该是x = 3"
+        }
+      ]
+    },
+    {
+      "question_number": "第3题",
+      "question_type": "objective",
+      "is_correct": true,
+      "student_answer": "B",
+      "correct_answer": "B",
+      "explanation": "学生正确理解了题目要求。",
+      "question_image": "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=science%20question%20multiple%20choice%20physics%20problem&image_size=square"
+    },
+    {
+      "question_number": "第4题",
+      "question_type": "subjective",
+      "is_correct": false,
+      "student_answer": "因为植物需要阳光",
+      "correct_answer": "因为植物需要进行光合作用，阳光是光合作用的必要条件，通过光合作用植物可以制造养分维持生长。",
+      "explanation": "学生的回答过于简单，没有解释完整的光合作用过程。",
+      "question_image": "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=biology%20question%20plant%20photosynthesis%20sunlight&image_size=square"
+    },
+    {
+      "question_number": "第5题",
+      "question_type": "objective",
+      "is_correct": true,
+      "student_answer": "C",
+      "correct_answer": "C",
+      "explanation": "学生正确识别了历史事件的时间顺序。",
+      "question_image": "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=history%20timeline%20question%20chronological%20order&image_size=square"
+    },
+    {
+      "question_number": "第6题",
+      "question_type": "subjective",
+      "is_correct": false,
+      "student_answer": "水的沸点是90°C",
+      "correct_answer": "水的沸点是100°C（在标准大气压下）。",
+      "explanation": "学生记错了水的沸点温度。",
+      "question_image": "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=chemistry%20question%20water%20boiling%20point%20100%20degrees&image_size=square"
+    }
+  ]
+}
