@@ -5,6 +5,14 @@ import { traeBadgePlugin } from 'vite-plugin-trae-solo-badge';
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    port: 11783,
+    host: true,
+    // https: {
+    //   key: '/root/project/figure_search/lismin.online_other/lismin.online.key',
+    //   cert: '/root/project/figure_search/lismin.online_other/lismin.online_bundle.pem'
+    // },
+  },
   build: {
     sourcemap: 'hidden',
   },

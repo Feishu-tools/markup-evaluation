@@ -79,6 +79,7 @@ export default function Home() {
             navigator.clipboard.writeText(JSON.stringify(data, null, 2));
             toast.success('已成功导出到剪贴板！');
           } catch (error) {
+            console.log(error)
             toast.error('导出到剪贴板失败。');
           }
         }}

@@ -1,0 +1,315 @@
+{
+  "grading_report": [
+    {
+      "question_number": "四、1",
+      "question_type": "subjective",
+      "question_text": "1. How are the students when Mrs Green asks them to choose a box?",
+      "student_answer": "They are interested in it",
+      "is_correct": true,
+      "analysis": "回答正确。答案准确地描述了学生们在选择盒子时的状态，语法正确，表达清晰。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "They are interested in it",
+          "is_correct": true,
+          "feedback": "回答简洁明了，准确回答了问题。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "正确",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "优质"
+    },
+    {
+      "question_number": "四、2",
+      "question_type": "subjective",
+      "question_text": "2. Write down two boxes with presents in them.",
+      "student_answer": "The red boxes and the green boxes",
+      "is_correct": true,
+      "analysis": "回答正确。根据题目要求，准确写出了两种装有礼物的盒子的颜色。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "The red boxes and the green boxes",
+          "is_correct": true,
+          "feedback": "信息提取准确，答案完整。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "正确",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "优质",
+      "description": ""
+    },
+    {
+      "question_number": "四、3",
+      "question_type": "subjective",
+      "question_text": "3. Why are the students with blue boxes unhappy?",
+      "student_answer": "Because there is nothing their boxes",
+      "is_correct": false,
+      "analysis": "回答的核心意思正确，但存在语法错误。在表达“在他们的盒子里”时，缺少了介词'in'。正确的句子应该是 'Because there is nothing in their boxes'。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "Because there is nothing their boxes",
+          "is_correct": false,
+          "feedback": "理解正确，但句子结构不完整。在 'their boxes' 前面需要加上介词 'in'，表示位置关系，应为 'in their boxes'。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "错误",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "优质"
+    },
+    {
+      "question_number": "四、4",
+      "question_type": "subjective",
+      "question_text": "4. What does Cindy do for the students who have nothing?",
+      "student_answer": "She gives her candies to the students who have nothing.",
+      "is_correct": true,
+      "analysis": "回答正确。答案完整地描述了Cindy的行为，语法和内容都准确无误。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "She gives her candies to the students who have nothing.",
+          "is_correct": true,
+          "feedback": "句子结构完整，信息准确，回答得很好。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "正确",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "优质"
+    },
+    {
+      "question_number": "四、5",
+      "question_type": "subjective",
+      "question_text": "5. What does the writer want to tell us?",
+      "student_answer": "I will give my chocolates to other students.",
+      "is_correct": false,
+      "analysis": "回答错误。题目问的是“作者想告诉我们什么”，需要总结文章的主旨大意，通常是关于分享、善良等道理。而学生的回答 'I will give my chocolates to other students.' 是一个个人感想或决定，没有回答作者的意图。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "I will give my chocolates to other students.",
+          "is_correct": false,
+          "feedback": "这个回答更像是读完文章后的个人感悟，而不是对作者写作意图的总结。需要重新审题，思考文章想要传达的核心思想是什么。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "错误",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "合格",
+      "description": "解析没有把正确答案写出来"
+    },
+    {
+      "question_number": "五、1",
+      "question_type": "subjective",
+      "question_text": "1. When did the Chinese sailing boat arrive in London?",
+      "student_answer": "It arrived in London over a hundred years ago.",
+      "is_correct": true,
+      "analysis": "回答正确。准确地回答了中国帆船到达伦敦的时间。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "It arrived in London over a hundred years ago.",
+          "is_correct": true,
+          "feedback": "答案准确，句子完整，很好。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "正确",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "优质",
+      "description": ""
+    },
+    {
+      "question_number": "五、2",
+      "question_type": "subjective",
+      "question_text": "2. How long was the boat?",
+      "student_answer": "It was eighty feet long",
+      "is_correct": true,
+      "analysis": "回答正确。准确地给出了船的长度信息。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "It was eighty feet long",
+          "is_correct": true,
+          "feedback": "信息提取准确，回答完整。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "正确",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "优质",
+      "description": ""
+    },
+    {
+      "question_number": "五、3",
+      "question_type": "subjective",
+      "question_text": "3. How many miles did the boat travel to London?",
+      "student_answer": "It traveled fifteen thousand miles... more than half of distance round the wold",
+      "is_correct": false,
+      "analysis": "回答基本正确，但存在拼写错误。'world' 被拼写成了 'wold'。虽然提供了额外的信息，但核心信息 'fifteen thousand miles' 是正确的。需要注意单词拼写的准确性。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "It traveled fifteen thousand miles... more than half of distance round the wold",
+          "is_correct": false,
+          "feedback": "信息基本正确，但存在拼写错误，'world' 应该拼写为 'world'。请注意单词拼写的准确性。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "错误",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "优质",
+      "description": ""
+    },
+    {
+      "question_number": "五、4",
+      "question_type": "subjective",
+      "question_text": "4. What did the Chinese learn to do at that time?",
+      "student_answer": "The Chinese learned how to build good boats and sail them well.",
+      "is_correct": true,
+      "analysis": "回答正确。准确概括了当时中国人学会的技能，答案完整，语法正确。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "The Chinese learned how to build good boats and sail them well.",
+          "is_correct": true,
+          "feedback": "答案准确，句子流畅，非常好。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "正确",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "优质"
+    },
+    {
+      "question_number": "五、5",
+      "question_type": "subjective",
+      "question_text": "5. What did the writer want to prove in the passage?",
+      "student_answer": "Any reasonable answer is Ok.",
+      "is_correct": false,
+      "analysis": "回答错误。学生可能抄写了答案提示语，而不是自己对问题的回答。题目要求回答“作者想证明什么”，需要根据文章内容进行总结和提炼，而不是写“任何合理的答案都可以”。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "Any reasonable answer is Ok.",
+          "is_correct": false,
+          "feedback": "这是一个对题目类型的标注，而不是答案。你需要根据文章内容，自己总结出作者想要证明的观点。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "错误",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "合格",
+      "description": "最好给一个示例答案"
+    },
+    {
+      "question_number": "六、1",
+      "question_type": "subjective",
+      "question_text": "1. According to the passage, what's the meaning of 'avalanche' in Chinese?",
+      "student_answer": "雪崩",
+      "is_correct": true,
+      "analysis": "回答正确。准确地给出了 'avalanche' 的中文意思。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "雪崩",
+          "is_correct": true,
+          "feedback": "回答正确，简洁明了。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "正确",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "优质",
+      "description": ""
+    },
+    {
+      "question_number": "六、2",
+      "question_type": "subjective",
+      "question_text": "2. How many reasons for avalanches are talked in the passage? (1 word)",
+      "student_answer": "Four",
+      "is_correct": true,
+      "analysis": "回答正确。根据题目要求，用一个单词准确回答了原因的数量。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "Four",
+          "is_correct": true,
+          "feedback": "回答正确，且符合题目要求的格式。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "正确",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "优质",
+      "description": ""
+    },
+    {
+      "question_number": "六、3",
+      "question_type": "subjective",
+      "question_text": "3. What are the possible results of an avalanche according to the passage? (no more than 12 words)",
+      "student_answer": "Cover people, houses, villages and cause death from cold.",
+      "is_correct": true,
+      "analysis": "回答正确。答案内容准确，并且符合不超过12个单词的字数限制。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "Cover people, houses, villages and cause death from cold.",
+          "is_correct": true,
+          "feedback": "内容准确，语言精练，符合题目要求。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "actual_is_correct": "正确",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "优质",
+      "description": ""
+    },
+    {
+      "question_number": "六、4",
+      "question_type": "subjective",
+      "question_text": "4. What can we do to keep safe if we want to climb snow mountains? (no more than 8 words)",
+      "student_answer": "Get education, training, and follow safety advice.",
+      "is_correct": true,
+      "analysis": "回答正确。准确概括了保持安全的方法，并且符合不超过8个单词的字数限制。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "Get education, training, and follow safety advice.",
+          "is_correct": true,
+          "feedback": "概括准确，语言简洁，符合题目要求。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "description": "",
+      "actual_is_correct": "正确",
+      "actual_question_type": "主观",
+      "analysis_acceptability": "优质"
+    },
+    {
+      "question_number": "六、5",
+      "question_type": "subjective",
+      "question_text": "5. What's the purpose of the passage? (no more than 10 words)",
+      "student_answer": "To raise awareness and promote mountain safety",
+      "is_correct": true,
+      "analysis": "回答正确。准确地总结了文章的目的，并且符合不超过10个单词的字数限制。",
+      "steps": [
+        {
+          "step_id": 1,
+          "step_text": "To raise awareness and promote mountain safety",
+          "is_correct": true,
+          "feedback": "准确地概括了文章主旨，语言精练，符合题目要求。"
+        }
+      ],
+      "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-17.png",
+      "description": "",
+      "analysis_acceptability": "优质",
+      "actual_question_type": "主观",
+      "actual_is_correct": "正确"
+    }
+  ]
+}

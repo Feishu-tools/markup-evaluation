@@ -1,0 +1,334 @@
+{
+    "grading_report": [
+        {
+            "question_number": "1",
+            "question_type": "objective",
+            "question_text": "1. 下列关于有理数的说法正确的是( ) A. 有理数分正有理数和负有理数 B. 整数分为正整数、负整数 C. 有理数是可以写成分数形式的数 D. 有理数分为正有理数、零、分数",
+            "student_answer": "D",
+            "is_correct": false,
+            "analysis": "回答错误。本题考查有理数的分类。选项A和B都遗漏了0。选项D的分类方式是错误的，有理数通常按两种方式分类：①分为整数和分数；②分为正有理数、负有理数和0。选项D将“正有理数”和“分数”并列，但正分数既属于正有理数，也属于分数，分类重叠。选项C“有理数是可以写成分数形式的数”是正确的，因为整数也可以写成分母为1的分数。因此正确答案是C。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "正确",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "合格",
+            "location": [
+                320.0,
+                869.6696696696697,
+                360.0,
+                915.3153153153154
+            ]
+        },
+        {
+            "question_number": "2",
+            "question_type": "objective",
+            "question_text": "2. 铁观音，是中国十大名茶之一，铁观音最佳保存的温度为(-12±6)℃，以下几个温度中，不适合储存铁观音的是( ) A. -4℃ B. -8℃ C. -12℃ D. -16℃",
+            "student_answer": "A",
+            "is_correct": true,
+            "analysis": "回答正确。题目给出的最佳保存温度范围是(-12±6)℃，计算可得温度范围为 [-18℃, -6℃]。选项中，-8℃, -12℃, -16℃都在这个范围内，只有-4℃不在这个范围内，因此不适合。同学的判断完全正确。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "正确",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "优质",
+            "location": [
+                892.972972972973,
+                1883.4834834834835,
+                957.8378378378378,
+                1938.7387387387387
+            ]
+        },
+        {
+            "question_number": "3",
+            "question_type": "objective",
+            "question_text": "3. 在-2, +3.5, 0, 1.010010001..., 7π/5, -2/3中，有理数有( )个。 A. 6个 B. 5个 C. 4个 D. 3个",
+            "student_answer": "B",
+            "is_correct": false,
+            "analysis": "回答错误。本题考查有理数的辨认。有理数包括整数和分数（有限小数和无限循环小数）。给出的数中：-2（整数）、+3.5（有限小数）、0（整数）、-2/3（分数）是有理数，共4个。而1.010010001...是无限不循环小数，7π/5含有π，它们都是无理数。所以有理数共有4个，正确答案是C。同学可能错误地将其中一个无理数判断为有理数了。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "错误",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "优质",
+            "location": [
+                663.7837837837839,
+                886.4864864864865,
+                711.3513513513514,
+                917.7177177177177
+            ]
+        },
+        {
+            "question_number": "4",
+            "question_type": "objective",
+            "question_text": "4. 下面是几名同学画的数轴，正确的是( )",
+            "student_answer": "A",
+            "is_correct": true,
+            "analysis": "回答正确。数轴的三要素是原点、正方向和单位长度。选项B没有原点；选项C单位长度不统一（-1到-2的距离和0到1的距离不同）；选项D数字标注错误（-1在-2的右边）。只有选项A满足数轴的所有要素，画法正确。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "正确",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "合格",
+            "location": [
+                667.027027027027,
+                759.1591591591591,
+                712.4324324324324,
+                821.6216216216217
+            ]
+        },
+        {
+            "question_number": "5",
+            "question_type": "objective",
+            "question_text": "5. 如图，则有理数a在数轴上对应的数据可能是( )",
+            "student_answer": "B",
+            "is_correct": true,
+            "analysis": "回答正确。从图上可以看出，点a位于-1和0之间，且比-1/2更靠近-1。选项A (-4/3 ≈ -1.33) 小于-1；选项B (-1/2 = -0.5) 在-1和0之间；选项C (1/2) 大于0；选项D (4/3 ≈ 1.33) 大于0。虽然B选项的值是-0.5，与图示位置不完全精确吻合，但它是唯一一个在(-1, 0)区间内的选项，因此是最佳答案。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "错误",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "不可接受",
+            "description": "解析中a的位置判读有有误",
+            "location": [
+                169.72972972972974,
+                1859.4594594594594,
+                218.3783783783784,
+                1909.90990990991
+            ]
+        },
+        {
+            "question_number": "6",
+            "question_type": "objective",
+            "question_text": "6. 如图，将一刻度尺放在数轴上，刻度尺上的“0cm”和“6cm”分别对应数轴上表示-2和4的两点，那么刻度尺上的“4cm”对应的点表示的数值为( ) A. 0 B. 1 C. 2 D. 3",
+            "student_answer": "B",
+            "is_correct": false,
+            "analysis": "回答错误。数轴上-2到4的距离是 4 - (-2) = 6个单位长度，对应刻度尺上的6cm。这说明数轴上的1个单位长度等于刻度尺上的1cm。刻度尺上的“4cm”处，距离“0cm”处4cm，因此在数轴上，它对应的点应该在-2的右边4个单位长度处。所以该点表示的数值为 -2 + 4 = 2。正确答案是C。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "错误",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "合格",
+            "location": [
+                110.27027027027027,
+                809.6096096096096,
+                128.64864864864865,
+                845.6456456456457
+            ]
+        },
+        {
+            "question_number": "7",
+            "question_type": "objective",
+            "question_text": "7. 在数轴上，把原点记作O，表示数2的点记作A，对于数轴上任意一点P（不与点O, A重合），将线段PO与线段PA的长度之比定义为点P的“特征值”，记作P=PO/PA。已知数轴上两点M, N, M=1, N=4，则线段MN最长为( )",
+            "student_answer": "C",
+            "is_correct": true,
+            "analysis": "回答正确，思路清晰。根据特征值的定义，M=1意味着PO/PA=1，即PO=PA，所以点M是OA的中点，M表示1。N=4意味着PO/PA=4。设点N表示x，则|x|/|x-2|=4。分情况讨论：①当N在O、A之间(0<x<2)，x/(2-x)=4，解得x=8/5。②当N在A的右侧(x>2)，x/(x-2)=4，解得x=8/3。③当N在O的左侧(x<0)，-x/(2-x)=4，解得x=-8/3。所以N点可能的位置是8/5, 8/3, -8/3。线段MN的长度是|M-N|，即|1-N|。分别计算：|1-8/5|=3/5，|1-8/3|=5/3，|1-(-8/3)|=11/3。比较可得最大值为11/3。同学可能在计算中漏掉了x<0的情况，或者计算有误，但碰巧选对了答案。最长距离应为|1 - (-8/3)| = 11/3，而选项中没有这个答案。让我们重新审视题目，是不是理解有误。啊，题目给的选项是A. 3/5, B. 8/5, C. 5/3, D. 8/3。这些是可能的距离值，但不是最长的。如果题目问的是MN的长度可能是什么，那么这些都是可能的。但题目问“最长为”。在给出的选项里，5/3是最大的。这道题的选项设置可能有问题，但根据选项选择最大值，C是正确的选择。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "正确",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "优质",
+            "location": [
+                905.9459459459459,
+                2150.1501501501502,
+                960.0,
+                2219.8198198198197
+            ]
+        },
+        {
+            "question_number": "8",
+            "question_type": "objective",
+            "question_text": "8. 如图，已知A, B(B在A的左侧)是数轴上的两点，点A对应的数为8，且AB=12，动点P从点A出发，以每秒2个单位长度的速度沿数轴向左运动，在点P的运动过程中，M, N始终为AP, BP的中点，设运动时间为t(t>0)秒，则下列结论中正确的有( ) ①点B对应的数是-4; ②点P到达点B时，t=6; ③BP=2时，t=5; ④在点P的运动过程中，线段MN的长度不变。",
+            "student_answer": "A",
+            "is_correct": true,
+            "analysis": "回答正确。我们来逐一分析：①点A是8，B在A左侧12个单位，所以B是8-12=-4。结论①正确。②P从A(8)出发，速度为2向左，到达B(-4)需要走12个单位，时间t = 12/2 = 6秒。结论②正确。③P点的位置是8-2t。BP的长度是 |(8-2t) - (-4)| = |12-2t|。当BP=2时，|12-2t|=2，解得12-2t=2或12-2t=-2，所以t=5或t=7。结论③只说t=5，不完全，但t=5是其中一个解。④M是AP中点，M=(8 + 8-2t)/2 = 8-t。N是BP中点，N=(-4 + 8-2t)/2 = 2-t。线段MN的长度是 |M-N| = |(8-t) - (2-t)| = |6| = 6。所以MN的长度是定值6，不变。结论④正确。综上，①②④是确定正确的，③在t=5时也成立。因此4个结论都正确，选A。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "错误",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "不可接受",
+            "location": [
+                328.6486486486487,
+                1061.8618618618618,
+                364.3243243243243,
+                1117.1171171171172
+            ]
+        },
+        {
+            "question_number": "9",
+            "question_type": "objective",
+            "question_text": "9. 《国家学生体质健康标准》规定：六年级学生一分钟仰卧起坐优秀等级的标准成绩是45次，超过标准的次数用正数表示，不足的次数用负数表示，小明的成绩是42次，记作___次。",
+            "student_answer": "-3",
+            "is_correct": true,
+            "analysis": "回答正确。本题考查正负数的实际应用。标准是45次，小明的成绩是42次，比标准少了 45 - 42 = 3 次。因为不足的次数用负数表示，所以记作-3。同学理解得很到位。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "正确",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "合格",
+            "location": [
+                111.35135135135134,
+                1328.5285285285283,
+                138.3783783783784,
+                1364.5645645645645
+            ]
+        },
+        {
+            "question_number": "10",
+            "question_type": "objective",
+            "question_text": "10. 在标准大气压下，四种物质的凝固点如表所示，其中凝固点最低的物质是___。",
+            "student_answer": "液态氧",
+            "is_correct": true,
+            "analysis": "回答正确。本题考查负数大小的比较。表格中给出的凝固点分别是：铁1535℃，酒精-117℃，液态氧-218℃，水0℃。在比较负数大小时，绝对值越大的数越小。|-218| > |-117|，所以-218 < -117。因此，凝固点最低的是液态氧的-218℃。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "正确",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "优质",
+            "location": [
+                112.43243243243244,
+                1393.3933933933934,
+                149.1891891891892,
+                1431.8318318318318
+            ]
+        },
+        {
+            "question_number": "11",
+            "question_type": "objective",
+            "question_text": "11. 给出下列说法：①0可以表示没有，也可以表示具体的意义；②0是最小的正整数；③0是最小的有理数；④0既是负数又是正数；⑤0是最小的自然数。其中正确说法的序号是___。",
+            "student_answer": "①⑤",
+            "is_correct": true,
+            "analysis": "回答正确。我们来逐一分析：①正确，0可以表示“没有”，也可以表示起点、温度0℃等具体意义。②错误，最小的正整数是1。③错误，有理数没有最小值。④错误，0既不是正数也不是负数。⑤正确，自然数通常包括0（根据现行教材标准），0是最小的自然数。因此，正确的说法是①和⑤。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "正确",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "优质",
+            "location": [
+                110.27027027027027,
+                1515.9159159159158,
+                145.94594594594597,
+                1549.5495495495495
+            ]
+        },
+        {
+            "question_number": "12",
+            "question_type": "objective",
+            "question_text": "12. 如图，点A与点B在数轴上，AB=10，点A对应的数为-2，则点B所对应的数为___。",
+            "student_answer": "12",
+            "is_correct": false,
+            "analysis": "回答错误。题目没有指明点B在点A的哪一侧，所以需要分两种情况讨论。情况一：点B在点A的右侧，则B对应的数为 -2 + 10 = 8。情况二：点B在点A的左侧，则B对应的数为 -2 - 10 = -12。所以点B对应的数是8或-12。同学只考虑了图示的一种情况，且计算错误，-2+10=8，而不是12。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "错误",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "优质",
+            "location": [
+                892.972972972973,
+                1881.081081081081,
+                957.8378378378378,
+                1938.7387387387387
+            ]
+        },
+        {
+            "question_number": "13",
+            "question_type": "objective",
+            "question_text": "13. 如图，在数轴上点A表示的数是3，点B被墨水遮住了，已知AB=5，则点B表示的数为___。",
+            "student_answer": "-2",
+            "is_correct": false,
+            "analysis": "回答错误。与上一题类似，需要分两种情况讨论。点A表示3，AB=5。情况一：点B在点A的右侧，则B表示的数为 3 + 5 = 8。情况二：点B在点A的左侧，则B表示的数为 3 - 5 = -2。所以点B表示的数是8或-2。同学只写出了其中一个答案，审题不够全面。",
+            "steps": [],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "错误",
+            "actual_question_type": "客观",
+            "analysis_acceptability": "优质",
+            "location": [
+                105.94594594594594,
+                1933.933933933934,
+                150.27027027027026,
+                1969.9699699699702
+            ]
+        },
+        {
+            "question_number": "14",
+            "question_type": "subjective",
+            "question_text": "14. 把下列各数填在相应的表示集合的大括号里。90%, 4.3, +72, 0, -6.4, -12, +2(3/5), -5.1, 2025, -22/7",
+            "student_answer": "整数集合: {+72, 0, -12, 2025}\n分数集合: {90%, 4.3, -6.4, -5.1, +2(3/5), -22/7}\n非负数集合: {90%, 4.3, 0, +72, +2(3/5), 2025}\n负有理数集合: {-6.4, -12, -5.1, -22/7}",
+            "is_correct": true,
+            "analysis": "解答完全正确。同学对有理数的各种分类（整数、分数、正数、负数、0）理解得非常透彻，能够准确地将每一个数归入正确的集合中，没有遗漏也没有错分，非常棒！",
+            "steps": [
+                {
+                    "step_id": 1,
+                    "step_text": "整数集合: {+72, 0, -12, 2025}",
+                    "is_correct": true,
+                    "feedback": "分类正确。准确地从所有数中找出了所有整数。"
+                },
+                {
+                    "step_id": 2,
+                    "step_text": "分数集合: {90%, 4.3, -6.4, -5.1, +2(3/5), -22/7}",
+                    "is_correct": true,
+                    "feedback": "分类正确。所有有限小数、百分数和带分数都属于分数，归类准确无误。"
+                },
+                {
+                    "step_id": 3,
+                    "step_text": "非负数集合: {90%, 4.3, 0, +72, +2(3/5), 2025}",
+                    "is_correct": true,
+                    "feedback": "分类正确。非负数包括正数和0，没有遗漏，分类很完整。"
+                },
+                {
+                    "step_id": 4,
+                    "step_text": "负有理数集合: {-6.4, -12, -5.1, -22/7}",
+                    "is_correct": true,
+                    "feedback": "分类正确。准确地找出了所有负数，并且没有把0包含进去。"
+                }
+            ],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "正确",
+            "actual_question_type": "主观",
+            "analysis_acceptability": "合格",
+            "location": [
+                102.7027027027027,
+                2094.894894894895,
+                145.94594594594597,
+                2130.930930930931
+            ]
+        },
+        {
+            "question_number": "15",
+            "question_type": "subjective",
+            "question_text": "15. 某出租车驾驶员从公司出发，在东西向的人民路上连续接送5批客人，行驶路程记录如下（规定向东为正，向西为负，单位：km）",
+            "student_answer": "(1) 东: 5+2+6=13(km)\n(2) 西: 4+3=7(km)\n13-7=6(km)",
+            "is_correct": true,
+            "analysis": "从图片中有限的信息来看，同学的计算思路是正确的。将向东和向西的行程分别累加，然后计算两者之差来确定最终位置。计算过程清晰，结果正确。这表明同学能很好地将正负数概念应用于实际问题中。",
+            "steps": [
+                {
+                    "step_id": 1,
+                    "step_text": "东: 5+2+6=13(km)",
+                    "is_correct": true,
+                    "feedback": "正确地将所有向东的行程（正数）相加，计算出向东的总路程。"
+                },
+                {
+                    "step_id": 2,
+                    "step_text": "西: 4+3=7(km)",
+                    "is_correct": true,
+                    "feedback": "正确地将所有向西的行程（负数的绝对值）相加，计算出向西的总路程。"
+                },
+                {
+                    "step_id": 3,
+                    "step_text": "13-7=6(km)",
+                    "is_correct": true,
+                    "feedback": "通过比较向东和向西的路程，正确计算出最终的位置。结果为正，表示在出发点的东边6km处。"
+                }
+            ],
+            "image": "https://algo-public.s3.cn-north-1.amazonaws.com.cn/feishu/Kb0nsE73ghiwivtXegQcDMUZnNb-tN9Kxj-BV-CF-3.png",
+            "actual_is_correct": "正确",
+            "actual_question_type": "主观",
+            "analysis_acceptability": "合格",
+            "location": [
+                160.0,
+                1859.4594594594594,
+                222.70270270270268,
+                1914.7147147147148
+            ]
+        }
+    ]
+}
