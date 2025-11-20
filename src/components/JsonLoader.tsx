@@ -12,8 +12,8 @@ export default function JsonLoader() {
   const handleLoadData = () => {
     try {
       const parsedData = JSON.parse(jsonInput) as GradingData;
-      if (!parsedData.grading_report || !Array.isArray(parsedData.grading_report)) {
-        throw new Error('JSON数据格式错误：缺少grading_report字段');
+      if (!Array.isArray(parsedData)) {
+        throw new Error('JSON数据格式错误：应为数组');
       }
       setData(parsedData);
       setError('');

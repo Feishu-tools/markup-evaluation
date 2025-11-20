@@ -102,9 +102,14 @@ def download_info1():
         data = json.loads("".join([i["text"] for i in sheet[f"G{i}"]]))
         for info in data["grading_report"]:
             image_url = info.get("image", "")
-            text = f'第"{info.get("question_number", "")}"题手写作答"{info.get("question_number", "")}"'
-            location = post(text, image_url)
-            info["location"] = location
+            if not image_url:
+                continue
+            text = f'第”{info.get("question_number", "")}“题中旁边手写作答"{info.get("student_answer", "")}"'
+            try:
+                location = post(text, image_url)
+                info["location"] = location
+            except:
+                continue
             print(text, ":", location)
 
         write_sheet[f"M{i}"] = json.dumps(data, ensure_ascii=False, indent=4)

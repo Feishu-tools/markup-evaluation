@@ -21,9 +21,11 @@ export default function Home() {
             setData(jsonData);
             selectCard(0);
           } else {
+            toast.error('Pasted data is not valid GradingData');
             console.error('Pasted data is not valid GradingData');
           }
         } catch (error) {
+          toast.error('Failed to parse pasted JSON');
           console.error('Failed to parse pasted JSON:', error);
         }
       }
@@ -63,12 +65,14 @@ export default function Home() {
           try {
             const data = useGradingStore.getState().data;
             if (data) {
-              const isAllFilled = data.grading_report.every(
-                (item) =>
-                  item.actual_is_correct &&
-                  item.actual_question_type &&
-                  item.analysis_acceptability
-              );
+              const isAllFilled = data.every((item) => {
+                const firstStep = item.answer_steps?.[0];
+                return (
+                  firstStep?.actual_is_correct &&
+                  firstStep?.actual_question_type &&
+                  firstStep?.analysis_acceptability
+                );
+              });
 
               if (!isAllFilled) {
                 toast.error('请填写所有必填字段后再导出。');

@@ -1,27 +1,32 @@
+export interface AnswerStep {
+  step_id: number;
+  student_answer: string;
+  analysis: string;
+  is_correct: boolean;
+  answer_location: number[];
+  analysis_acceptability: '优质' | '合格' | '不可接受';
+  step_text?: string; 
+}
+
 export interface GradingItem {
   question_number: string;
   question_type: 'objective' | 'subjective';
   question_text: string;
-  student_answer: string;
-  is_correct: boolean;
-  analysis: string;
-  image?: string;
-  steps?: Array<{
-    step_id: number;
-    step_text: string;
-    is_correct: boolean;
-    feedback: string;
-  }>;
+  answer_steps: AnswerStep[];
   isAdded?: boolean;
+  description?: string;
+  image_url?: string; 
   actual_is_correct?: '正确' | '错误';
   actual_question_type?: '主观' | '客观';
-  analysis_acceptability?: '优质' | '合格' | '不可接受';
-  description?: string;
 }
 
-export interface GradingData {
-  grading_report: GradingItem[];
+export interface JsonDataItem {
+  image_url: string;
+  markup_status: string;
+  questions_info: GradingItem[];
 }
+
+export type GradingData = JsonDataItem[];
 
 export interface Stats {
   objective: number;

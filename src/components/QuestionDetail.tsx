@@ -1,10 +1,10 @@
 import { useGradingStore } from '@/stores/gradingStore';
-import { GradingItem } from '@/types';
+import { GradingItem, AnswerStep } from '@/types';
 
 export default function QuestionDetail() {
   const { data, selectedCardIndex, updateQuestion } = useGradingStore();
 
-  if (selectedCardIndex === -1 || !data?.grading_report[selectedCardIndex]) {
+  if (selectedCardIndex === -1 || !data?.[selectedCardIndex]) {
     return (
       <div className="bg-white rounded-lg shadow-sm p-6 text-center text-gray-500">
         请选择一道题目查看详情
@@ -12,13 +12,21 @@ export default function QuestionDetail() {
     );
   }
 
-  const item = data.grading_report[selectedCardIndex];
+  const item = data[selectedCardIndex];
   const questionTypeText = item.question_type === 'objective' ? '客观题' : 
                            item.question_type === 'subjective' ? '主观题' : '未知类型';
 
-  const handleFieldChange = (field: keyof GradingItem, value: any) => {
-    updateQuestion(selectedCardIndex, { [field]: value });
+  const handleFieldChange = (field: keyof GradingItem | keyof AnswerStep, value: any, stepIndex?: number) => {
+    if (typeof stepIndex === 'number' && item.answer_steps[stepIndex]) {
+      const newAnswerSteps = [...item.answer_steps];
+      newAnswerSteps[stepIndex] = { ...newAnswerSteps[stepIndex], [field]: value };
+      updateQuestion(selectedCardIndex, { answer_steps: newAnswerSteps });
+    } else {
+      updateQuestion(selectedCardIndex, { [field as keyof GradingItem]: value });
+    }
   };
+  
+  const firstStep = item.answer_steps?.[0];
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-6 h-full flex flex-col">
@@ -54,21 +62,6 @@ export default function QuestionDetail() {
               <option value="主观">主观</option>
             </select>
           </div>
-          <div>
-            <label htmlFor="analysis_acceptability" className="block text-sm font-medium text-gray-700">* 解析可接受度</label>
-            <select
-              id="analysis_acceptability"
-              name="analysis_acceptability"
-              value={item.analysis_acceptability || ''}
-              onChange={(e) => handleFieldChange('analysis_acceptability', e.target.value)}
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-            >
-              <option value="">--</option>
-              <option value="优质">优质</option>
-              <option value="合格">合格</option>
-              <option value="不可接受">不可接受</option>
-            </select>
-          </div>
         </div>
       </div>
       
@@ -100,27 +93,29 @@ export default function QuestionDetail() {
           <div className="text-gray-600 bg-gray-50 p-2 rounded">{item.question_text}</div>
         </div>
 
-        <div>
-          <div className="font-bold text-gray-700 mb-1">学生答案</div>
-          <div className="text-gray-600 bg-gray-50 p-2 rounded">{item.student_answer}</div>
-        </div>
-        
-
-        
-        {item.analysis && (
-          <div>
-            <div className="font-bold text-gray-700 mb-1">解析</div>
-            <div className="text-gray-600 bg-blue-50 p-3 rounded border border-blue-200">
-              {item.analysis}
+        {firstStep && (
+          <>
+            <div>
+              <div className="font-bold text-gray-700 mb-1">学生答案</div>
+              <div className="text-gray-600 bg-gray-50 p-2 rounded">{firstStep.student_answer}</div>
             </div>
-          </div>
+            
+            {firstStep.analysis && (
+              <div>
+                <div className="font-bold text-gray-700 mb-1">解析</div>
+                <div className="text-gray-600 bg-blue-50 p-3 rounded border border-blue-200">
+                  {firstStep.analysis}
+                </div>
+              </div>
+            )}
+          </>
         )}
         
-        {item.steps && item.steps.length > 0 && (
+        {item.answer_steps && item.answer_steps.length > 0 && (
           <div>
             <div className="font-bold text-gray-700 mb-2">解题步骤</div>
             <div className="space-y-2">
-              {item.steps.map((step, index) => (
+              {item.answer_steps.map((step, index) => (
                 <div
                   key={index}
                   className={`p-3 rounded border-l-3 ${
@@ -129,20 +124,37 @@ export default function QuestionDetail() {
                       : 'bg-red-50 border-red-500 border-l-4'
                   }`}
                 >
-                  <div className="text-gray-700 mb-1">
-                    <span className="font-medium">步骤 {index + 1}:</span>
-                    <span className={`ml-2 px-2 py-1 rounded text-xs ${
-                      step.is_correct 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-red-100 text-red-800'
-                    }`}>
-                      {step.is_correct ? '正确' : '错误'}
-                    </span>
+                  <div className="flex justify-between items-center mb-2">
+                    <div className="text-gray-700">
+                      <span className="font-medium">步骤 {index + 1}:</span>
+                      <span className={`ml-2 px-2 py-1 rounded text-xs ${
+                        step.is_correct 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-red-100 text-red-800'
+                      }`}>
+                        {step.is_correct ? '正确' : '错误'}
+                      </span>
+                    </div>
+                    <div className="w-1/3">
+                      <label htmlFor={`analysis_acceptability_${index}`} className="sr-only">解析可接受度</label>
+                      <select
+                        id={`analysis_acceptability_${index}`}
+                        name={`analysis_acceptability_${index}`}
+                        value={step.analysis_acceptability || ''}
+                        onChange={(e) => handleFieldChange('analysis_acceptability', e.target.value, index)}
+                        className="block w-full pl-3 pr-10 py-1 text-xs border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
+                      >
+                        <option value="" disabled>解析可接受度</option>
+                        <option value="优质">优质</option>
+                        <option value="合格">合格</option>
+                        <option value="不可接受">不可接受</option>
+                      </select>
+                    </div>
                   </div>
-                  <div className="text-gray-600">{step.step_text}</div>
-                  {step.feedback && (
+                  <div className="text-gray-600">{step.step_text || step.student_answer}</div>
+                  {step.analysis && (
                     <div className="text-gray-500 text-sm mt-1 italic">
-                      {step.feedback}
+                      {step.analysis}
                     </div>
                   )}
                 </div>

@@ -1,8 +1,8 @@
 import { create } from 'zustand';
-import { GradingData, GradingItem } from '@/types';
+import { GradingData, GradingItem, JsonDataItem } from '@/types';
 
 interface GradingStore {
-  data: GradingData | null;
+  data: GradingItem[] | null;
   selectedCardIndex: number;
   selectedQuestionImage: string | null;
   setData: (data: GradingData) => void;
@@ -17,13 +17,22 @@ export const useGradingStore = create<GradingStore>((set) => ({
   data: null,
   selectedCardIndex: -1,
   selectedQuestionImage: null,
-  setData: (data) => set({ data, selectedCardIndex: -1, selectedQuestionImage: null }),
+  setData: (data: GradingData) => {
+    const flattenedData = data.flatMap(item => 
+      item.questions_info.map(question => ({
+        ...question,
+        image_url: item.image_url,
+      }))
+    );
+    set({ data: flattenedData, selectedCardIndex: -1, selectedQuestionImage: null });
+  },
   selectCard: (index) => {
     set((state) => {
-      const item = state.data?.grading_report[index];
+      if (!state.data) return {};
+      const item = state.data[index];
       return {
         selectedCardIndex: index,
-        selectedQuestionImage: item?.image || null,
+        selectedQuestionImage: item?.image_url || null,
       };
     });
   },
@@ -34,15 +43,9 @@ export const useGradingStore = create<GradingStore>((set) => ({
         const newQuestion = {
           ...question,
           isAdded: true,
-          actual_is_correct: question.is_correct ? '正确' : '错误',
-          actual_question_type: question.question_type === 'subjective' ? '主观' : '客观',
-          analysis_acceptability: '优质',
         };
         return {
-          data: {
-            ...state.data,
-            grading_report: [...state.data.grading_report, newQuestion],
-          },
+          data: [...state.data, newQuestion],
         };
       }
       return state;
@@ -50,13 +53,10 @@ export const useGradingStore = create<GradingStore>((set) => ({
   deleteQuestion: (index) =>
     set((state) => {
       if (state.data) {
-        const newGradingReport = [...state.data.grading_report];
-        newGradingReport.splice(index, 1);
+        const newData = [...state.data];
+        newData.splice(index, 1);
         return {
-          data: {
-            ...state.data,
-            grading_report: newGradingReport,
-          },
+          data: newData,
         };
       }
       return state;
@@ -64,13 +64,10 @@ export const useGradingStore = create<GradingStore>((set) => ({
   updateQuestion: (index, updatedFields) =>
     set((state) => {
       if (state.data) {
-        const newGradingReport = [...state.data.grading_report];
-        newGradingReport[index] = { ...newGradingReport[index], ...updatedFields };
+        const newData = [...state.data];
+        newData[index] = { ...newData[index], ...updatedFields };
         return {
-          data: {
-            ...state.data,
-            grading_report: newGradingReport,
-          },
+          data: newData,
         };
       }
       return state;
