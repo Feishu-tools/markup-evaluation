@@ -1,11 +1,10 @@
 export interface AnswerStep {
   step_id: number;
   student_answer: string;
-  analysis: string;
   is_correct: boolean;
+  analysis: string;
   answer_location: number[];
   analysis_acceptability: '优质' | '合格' | '不可接受';
-  step_text?: string; 
 }
 
 export interface GradingItem {

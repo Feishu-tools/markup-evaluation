@@ -1,4 +1,4 @@
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import { TransformWrapper, TransformComponent, ReactZoomPanPinchContentRef } from 'react-zoom-pan-pinch';
 import { ZoomIn, ZoomOut, Expand } from 'lucide-react';
 import { useGradingStore } from '@/stores/gradingStore';
 import { useEffect, useRef, useState } from 'react';
@@ -8,20 +8,38 @@ export default function QuestionImageViewer() {
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const [scale, setScale] = useState(1);
   const imageRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const transformWrapperRef = useRef<ReactZoomPanPinchContentRef>(null);
 
   const colors = ['border-red-500', 'border-blue-500', 'border-green-500', 'border-yellow-500', 'border-purple-500', 'border-pink-500'];
   const textColors = ['text-red-500', 'text-blue-500', 'text-green-500', 'text-yellow-500', 'text-purple-500', 'text-pink-500'];
 
   useEffect(() => {
     const image = imageRef.current;
-    if (image) {
+    const container = containerRef.current;
+    const transformWrapper = transformWrapperRef.current;
+
+    if (image && container && transformWrapper) {
       const handleLoad = () => {
-        setImageSize({ width: image.naturalWidth, height: image.naturalHeight });
+        const { naturalWidth, naturalHeight } = image;
+        const { clientWidth, clientHeight } = container;
+        
+        setImageSize({ width: naturalWidth, height: naturalHeight });
+
+        if (naturalHeight > 0 && clientHeight > 0) {
+          const newScale = clientHeight / naturalHeight;
+          const newPositionX = (clientWidth - naturalWidth * newScale) / 2;
+          
+          transformWrapper.setTransform(newPositionX, 0, newScale, 200, 'easeOut');
+          setScale(newScale);
+        }
       };
+
       image.addEventListener('load', handleLoad);
       if (image.complete) {
         handleLoad();
       }
+
       return () => image.removeEventListener('load', handleLoad);
     }
   }, [selectedQuestionImage]);
@@ -66,11 +84,9 @@ export default function QuestionImageViewer() {
   };
 
   return (
-    <div className="w-full h-full bg-gray-50 rounded-lg flex items-center justify-center relative overflow-hidden">
+    <div ref={containerRef} className="w-full h-full bg-gray-50 rounded-lg flex items-center justify-center relative overflow-hidden">
       <TransformWrapper
-        initialScale={1}
-        initialPositionX={0}
-        initialPositionY={0}
+        ref={transformWrapperRef}
         onTransformed={(ref, state) => setScale(state.scale)}
       >
         {({ zoomIn, zoomOut, resetTransform }) => (

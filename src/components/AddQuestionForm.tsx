@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AnswerStep } from '@/types';
 
 interface AddQuestionFormProps {
   onAdd: (newQuestion: any) => void;
@@ -7,7 +8,15 @@ interface AddQuestionFormProps {
 
 export default function AddQuestionForm({ onAdd, onCancel }: AddQuestionFormProps) {
   const [questionNumber, setQuestionNumber] = useState('');
-  const [questionType, setQuestionType] = useState('objective');
+  const [newStep, setNewStep] = useState<AnswerStep>({ 
+     step_id: 1, 
+     is_correct: true, 
+     analysis: '', 
+     student_answer: '', 
+     answer_location: [],
+     analysis_acceptability: '合格'
+   }); 
+   const [questionType, setQuestionType] = useState('objective'); 
   const [isCorrect, setIsCorrect] = useState(true);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -15,13 +24,14 @@ export default function AddQuestionForm({ onAdd, onCancel }: AddQuestionFormProp
     onAdd({
       question_number: questionNumber,
       question_type: questionType as 'objective' | 'subjective',
-      is_correct: isCorrect,
-      student_answer: '',
-      correct_answer: '',
-      analysis: '',
-      steps: [],
-      question_text: '',
-      question_image: '',
+      answer_steps: [{
+        step_id: 1,
+        step_text: '',
+        is_correct: isCorrect,
+        analysis: '',
+        answer_location: [],
+        analysis_acceptability: '合格',
+      }],
       isAdded: true,
     });
   };

@@ -151,7 +151,10 @@ export default function QuestionDetail() {
                       </select>
                     </div>
                   </div>
-                  <div className="text-gray-600">{step.step_text || step.student_answer}</div>
+                  <div className="flex-1">
+                    <div className="font-semibold">学生答案</div>
+                    <div className="text-gray-600">{step.student_answer}</div>
+                  </div>
                   {step.analysis && (
                     <div className="text-gray-500 text-sm mt-1 italic">
                       {step.analysis}

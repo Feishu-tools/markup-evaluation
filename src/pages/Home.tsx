@@ -43,14 +43,14 @@ export default function Home() {
       
       <main className="max-h-[100%] flex h-[calc(100vh-2rem)] gap-4">
         {/* Left Panel: Image Viewer */}
-        <div className="w-3/5 flex flex-col">
+        <div className="w-2/5 flex flex-col">
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 flex-1 min-h-0">
             <QuestionImageViewer imageUrl={selectedQuestionImage} />
           </div>
         </div>
 
         {/* Right Panel: Details */}
-        <div className="w-2/5 flex flex-col gap-4">
+        <div className="w-3/5 flex flex-col gap-4">
           <div className="h-3/10 bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
             <GradingCards />
           </div>

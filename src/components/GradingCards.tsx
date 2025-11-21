@@ -74,7 +74,14 @@ import { useGradingStore } from '@/stores/gradingStore';
            题目类型: {questionTypeText} 
          </div> 
          <div className="font-bold text-gray-700 line-clamp-2 break-words"> 
-           学生答案: {firstStep?.student_answer} 
+           <div className="p-4 border-t">
+             <h3 className="text-lg font-semibold mb-2">判题详情</h3>
+             <p>题号: {item.question_number}</p>
+             <p>题型: {item.question_type}</p>
+             <p>学生答案: {firstStep?.student_answer}</p>
+             <p>是否正确: {firstStep?.is_correct ? '正确' : '错误'}</p>
+             <p>解析: {firstStep?.analysis}</p>
+           </div>
          </div> 
        </div> 
        
