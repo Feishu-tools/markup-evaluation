@@ -115,9 +115,9 @@
                         "is_correct": true,
                         "answer_location": [
                             61,
-                            1468,
+                            1550,
                             819,
-                            1722
+                            1640
                         ],
                         "analysis": "思路正确，巧妙地将所求的 $$a+b$$ 与上一步得到的常数“1”的表达式相乘，展开后利用基本不等式 $$a/b + 2b/a \\geq 2\\sqrt{(a/b)(2b/a)} = 2\\sqrt{2}$$，推导过程和计算都非常准确。",
                         "analysis_acceptability": "合格"
