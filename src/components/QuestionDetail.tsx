@@ -135,20 +135,35 @@ export default function QuestionDetail() {
                         {step.is_correct ? '正确' : '错误'}
                       </span>
                     </div>
-                    <div className="w-1/3">
-                      <label htmlFor={`analysis_acceptability_${index}`} className="sr-only">解析可接受度</label>
-                      <select
-                        id={`analysis_acceptability_${index}`}
-                        name={`analysis_acceptability_${index}`}
-                        value={step.analysis_acceptability || ''}
-                        onChange={(e) => handleFieldChange('analysis_acceptability', e.target.value, index)}
-                        className="block w-full pl-3 pr-10 py-1 text-xs border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
-                      >
-                        <option value="" disabled>解析可接受度</option>
-                        <option value="优质">优质</option>
-                        <option value="合格">合格</option>
-                        <option value="不可接受">不可接受</option>
-                      </select>
+                    <div className="flex items-center gap-2 w-2/3">
+                      <div className="w-1/2">
+                        <label htmlFor={`is_location_correct_${index}`} className="sr-only">定位是否正确</label>
+                        <select
+                          id={`is_location_correct_${index}`}
+                          name={`is_location_correct_${index}`}
+                          value={step.is_location_correct ? '正确' : '错误'}
+                          onChange={(e) => handleFieldChange('is_location_correct', e.target.value === '正确', index)}
+                          className="block w-full pl-3 pr-10 py-1 text-xs border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
+                        >
+                          <option value="正确">正确</option>
+                          <option value="错误">错误</option>
+                        </select>
+                      </div>
+                      <div className="w-1/2">
+                        <label htmlFor={`analysis_acceptability_${index}`} className="sr-only">解析可接受度</label>
+                        <select
+                          id={`analysis_acceptability_${index}`}
+                          name={`analysis_acceptability_${index}`}
+                          value={step.analysis_acceptability || ''}
+                          onChange={(e) => handleFieldChange('analysis_acceptability', e.target.value, index)}
+                          className="block w-full pl-3 pr-10 py-1 text-xs border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
+                        >
+                          <option value="" disabled>解析可接受度</option>
+                          <option value="优质">优质</option>
+                          <option value="合格">合格</option>
+                          <option value="不可接受">不可接受</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
                   <div className="flex-1">

@@ -11,6 +11,7 @@ export default function AddQuestionForm({ onAdd, onCancel }: AddQuestionFormProp
   const [newStep, setNewStep] = useState<AnswerStep>({ 
      step_id: 1, 
      is_correct: true, 
+     is_location_correct: true,
      analysis: '', 
      student_answer: '', 
      answer_location: [],

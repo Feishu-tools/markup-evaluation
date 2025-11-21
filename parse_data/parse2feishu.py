@@ -142,8 +142,9 @@ def convert_data_structure(error_data):
             for step in question["steps"]:
                 new_step = {
                     "step_id": step.get("step_id"),
-                    "student_answer": step.get("step_text"),
+                    "student_answer": step.get("student_answer"),
                     "is_correct": step.get("is_correct"),
+                    "is_location_correct": True,
                     "analysis": step.get("feedback", ""),
                     "answer_location": [],
                     "analysis_acceptability": question.get("analysis_acceptability", ""),

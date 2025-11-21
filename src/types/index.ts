@@ -2,8 +2,9 @@ export interface AnswerStep {
   step_id: number;
   student_answer: string;
   is_correct: boolean;
+  is_location_correct: boolean;
   analysis: string;
-  answer_location: number[];
+  answer_location: any[];
   analysis_acceptability: '优质' | '合格' | '不可接受';
 }
 

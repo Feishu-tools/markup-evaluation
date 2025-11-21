@@ -43,14 +43,14 @@ export default function Home() {
       
       <main className="max-h-[100%] flex h-[calc(100vh-2rem)] gap-4">
         {/* Left Panel: Image Viewer */}
-        <div className="w-2/5 flex flex-col">
+        <div className="w-3/5 flex flex-col">
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 flex-1 min-h-0">
             <QuestionImageViewer imageUrl={selectedQuestionImage} />
           </div>
         </div>
 
         {/* Right Panel: Details */}
-        <div className="w-3/5 flex flex-col gap-4">
+        <div className="w-2/5 flex flex-col gap-4">
           <div className="h-3/10 bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
             <GradingCards />
           </div>
@@ -64,22 +64,6 @@ export default function Home() {
           onClick={() => {
           try {
             const data = useGradingStore.getState().data;
-            if (data) {
-              const isAllFilled = data.every((item) => {
-                const firstStep = item.answer_steps?.[0];
-                return (
-                  firstStep?.actual_is_correct &&
-                  firstStep?.actual_question_type &&
-                  firstStep?.analysis_acceptability
-                );
-              });
-
-              if (!isAllFilled) {
-                toast.error('请填写所有必填字段后再导出。');
-                return;
-              }
-            }
-
             navigator.clipboard.writeText(JSON.stringify(data, null, 2));
             toast.success('已成功导出到剪贴板！');
           } catch (error) {
