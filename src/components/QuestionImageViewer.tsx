@@ -20,19 +20,27 @@ export default function QuestionImageViewer() {
     const transformWrapper = transformWrapperRef.current;
 
     if (image && container && transformWrapper) {
-      const handleLoad = () => {
+      const calculateTransform = () => {
         const { naturalWidth, naturalHeight } = image;
         const { clientWidth, clientHeight } = container;
         
         setImageSize({ width: naturalWidth, height: naturalHeight });
 
-        if (naturalHeight > 0 && clientHeight > 0) {
-          const newScale = clientHeight / naturalHeight;
-          const newPositionX = (clientWidth - naturalWidth * newScale) / 2;
+        if (naturalWidth > 0 && naturalHeight > 0 && clientWidth > 0 && clientHeight > 0) {
+          const scaleX = clientWidth / naturalWidth;
+          const scaleY = clientHeight / naturalHeight;
+          const newScale = Math.min(scaleX, scaleY);
           
-          transformWrapper.setTransform(newPositionX, 0, newScale, 200, 'easeOut');
+          const newPositionX = (clientWidth - naturalWidth * newScale) / 2;
+          const newPositionY = (clientHeight - naturalHeight * newScale) / 2;
+          
+          transformWrapper.setTransform(newPositionX, newPositionY, newScale, 200, 'easeOut');
           setScale(newScale);
         }
+      };
+
+      const handleLoad = () => {
+        calculateTransform();
       };
 
       image.addEventListener('load', handleLoad);
@@ -40,7 +48,15 @@ export default function QuestionImageViewer() {
         handleLoad();
       }
 
-      return () => image.removeEventListener('load', handleLoad);
+      const resizeObserver = new ResizeObserver(() => {
+        calculateTransform();
+      });
+      resizeObserver.observe(container);
+
+      return () => {
+        image.removeEventListener('load', handleLoad);
+        resizeObserver.unobserve(container);
+      }
     }
   }, [selectedQuestionImage]);
 
@@ -49,7 +65,7 @@ export default function QuestionImageViewer() {
   }
 
   const renderRectangles = () => {
-    if (!selectedLocations) return null;
+    if (!selectedLocations || !imageSize.width) return null;
 
     return selectedLocations.map((location, index) => {
       if (location.length !== 4) return null;
@@ -62,18 +78,18 @@ export default function QuestionImageViewer() {
           <div
             className={`absolute ${color} border-2 pointer-events-none`}
             style={{
-              left: `${x1 * scale}px`,
-              top: `${y1 * scale}px`,
-              width: `${(x2 - x1) * scale}px`,
-              height: `${(y2 - y1) * scale}px`,
+              left: `${x1}px`,
+              top: `${y1}px`,
+              width: `${x2 - x1}px`,
+              height: `${y2 - y1}px`,
             }}
           />
           <span
             className={`absolute ${textColor} font-bold pointer-events-none`}
             style={{
-              left: `${x1 * scale - 20}px`,
-              top: `${y1 * scale}px`,
-              fontSize: `${16 * scale}px`,
+              left: `${x1 - 20}px`,
+              top: `${y1}px`,
+              fontSize: `16px`,
             }}
           >
             {index + 1}
